@@ -18,12 +18,16 @@ let getSeries = (e) => {
         .then(function(myJson) {
             console.log(myJson);
             ul.innerHTML=""
-            return myJson.map((serial) => { // Map through the results and for each run the code below
-                let li = createNode('li'), //  Create the elements we need
-                    span = createNode('span');
+            return myJson.map((serial) => {
+                let li = createNode('li');
+                let span = createNode('span');
+                let img = createNode('img');
+                img.src = serial.show.image['medium'];
                 span.innerHTML = `${serial.show.name}`;
                 append(li, span);
+                append(li,img);
                 append(ul, li);
+
             })
         });
 };

@@ -31,6 +31,7 @@ height: 80px;
   //background-size: cover;
   filter: brightness(110%);
   color: #000;
+  overflow: scroll;
 }
 
 .title-container__title {
@@ -73,5 +74,15 @@ input[type="text"] {
 
 input[type="text"] {
   outline: none;
+}
+ul li{
+  height: 80px;
+  position: relative;
+  padding: 5%;
+}
+ul img{
+  width: 60px;
+  position: absolute;
+  right: 20px;
 }
 
