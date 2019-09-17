@@ -1,39 +1,45 @@
 import style from "./_scss/main.scss";
+import {createNode} from "./helpers";
+import {append} from "./helpers";
+import {saveValue} from "./helpers";
+import {getSavedValue} from "./helpers";
+import {saveValueToSession} from "./helpers";
+import {redirect} from "./helpers";
+
 let currentValue ='';
 let currentResponse = {};
+let element = document.getElementById("mainInput");
+element.value = getSavedValue('mainInput');
 const ul = document.getElementById('seriesList');
-let createNode = (element) => {
-    return document.createElement(element); // Create the type of element you pass in the parameters
-};
-let append = (parent, el) => {
-    return parent.appendChild(el); // Append the second parameter(element) to the first one
-};
 let getSeries = (e) => {
-    console.log(e.value);
     const targetName=e.value;
+    saveValue(e);
     return fetch(`http://api.tvmaze.com/search/shows?q=${targetName}`)
         .then(function(response) {
             return response.json();
         })
         .then(function(myJson) {
-            console.log(myJson);
-            ul.innerHTML=""
+            ul.innerHTML="";
             return myJson.map((serial) => {
                 let li = createNode('li');
                 let span = createNode('span');
                 let img = createNode('img');
+                let a = createNode('a');
+                a.href="/seriesPage.html";
+                li.id = `show${serial.show.id}`;
+                li.addEventListener("click", () => {saveValueToSession('selectedSeries',li)});
                 img.src = serial.show.image['medium'];
-                span.innerHTML = `${serial.show.name}`;
-                append(li, span);
+                span.innerText = `${serial.show.name}`;
+                // span.addEventListener('click', () => {redirect("/seriesPage")});
+                append(a, span);
+                append(li, a);
                 append(li,img);
                 append(ul, li);
-
             })
         });
 };
 document.addEventListener("DOMContentLoaded", function() {
-    let element = document.getElementById("mainInput")
-    element.addEventListener("change", ()=>{getSeries(element)})
+    element.addEventListener("input", ()=>{getSeries(element)})
 });
 
 
