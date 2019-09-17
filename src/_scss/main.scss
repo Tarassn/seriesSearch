@@ -96,6 +96,26 @@ body{
     color:black;
   }
 }
+#selectedSeriesPage{
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 10px 5%;
+  position: relative;
+  overflow: scroll;
+  li{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  img{
+    width: 100px;
+  }
+}
 
 .title-container {
   height: 100vh;
@@ -111,7 +131,8 @@ body{
   font-size: 36px;
   letter-spacing: 2px;
   line-height: 1.3;
-  padding: 10px;
+  box-sizing: border-box;
+  padding: 30px;
   font-family: 'Roboto Slab', serif;
 }
 

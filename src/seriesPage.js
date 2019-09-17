@@ -6,7 +6,6 @@ import {
     getSavedValueFromSession,
 } from "./helpers";
 let selectedId = getSavedValueFromSession('selectedSeries').slice(4);
-console.log(selectedId);
 let element = document.getElementById("mainSeriesPage");
 let addToSelected = (item) => {
     let selectedArr = getSavedValue("selectedArr");
@@ -15,9 +14,10 @@ let addToSelected = (item) => {
         if(selectedArr.indexOf(item) === -1) {
             selectedArr.push(item);
         }
-        localStorage.setItem('selectedArr', selectedArr)
+        localStorage.setItem('selectedArr', JSON.stringify(selectedArr))
     }
     else {
+        selectedArr = JSON.parse(selectedArr);
         if(selectedArr.indexOf(item) === -1) {
             selectedArr.push(item);
         }
