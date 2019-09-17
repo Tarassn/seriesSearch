@@ -24,12 +24,15 @@ let getSeries = (e) => {
                 let li = createNode('li');
                 let span = createNode('span');
                 let img = createNode('img');
+                let a = createNode('a');
+                a.href="/seriesPage.html";
                 li.id = `show${serial.show.id}`;
                 li.addEventListener("click", () => {saveValueToSession('selectedSeries',li)});
                 img.src = serial.show.image['medium'];
                 span.innerText = `${serial.show.name}`;
-                span.addEventListener('click', () => {redirect("/seriesPage")});
-                append(li, span);
+                // span.addEventListener('click', () => {redirect("/seriesPage")});
+                append(a, span);
+                append(li, a);
                 append(li,img);
                 append(ul, li);
             })

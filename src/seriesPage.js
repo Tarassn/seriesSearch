@@ -1,6 +1,31 @@
-import {append, createNode, getSavedValueFromSession, redirect, saveValue, saveValueToSession} from "./helpers";
+import style from "./_scss/main.scss";
+import {
+    append,
+    createNode,
+    getSavedValue,
+    getSavedValueFromSession,
+} from "./helpers";
 let selectedId = getSavedValueFromSession('selectedSeries').slice(4);
 console.log(selectedId);
+let element = document.getElementById("mainSeriesPage");
+let addToSelected = (item) => {
+    let selectedArr = getSavedValue("selectedArr");
+    if(selectedArr === ""){
+        selectedArr = [];
+        if(selectedArr.indexOf(item) === -1) {
+            selectedArr.push(item);
+        }
+        localStorage.setItem('selectedArr', selectedArr)
+    }
+    else {
+        if(selectedArr.indexOf(item) === -1) {
+            selectedArr.push(item);
+        }
+        localStorage.setItem('selectedArr', JSON.stringify(selectedArr))
+    }
+    console.log(selectedArr)
+
+};
 let getSeriesFromSession = (id) => {
     return fetch(`http://api.tvmaze.com/shows/${id}`)
         .then(function(response) {
@@ -8,13 +33,19 @@ let getSeriesFromSession = (id) => {
         })
         .then(function(receivedObj) {
             console.log(receivedObj);
-            // let span = createNode('span');
-            // let img = createNode('img');
-            // img.src = receivedObj.image['medium'];
-            // span.innerText = `${receivedObj.name}`;
-            // append(li, span);
-            // append(li,img);
-            // append(ul, li);
+            let h3 = createNode('h3');
+            let img = createNode('img');
+            let p = createNode('p');
+            let button = createNode('button');
+            img.src = receivedObj.image['medium'];
+            h3.innerText = `${receivedObj.name}`;
+            button.innerText="Add to selected";
+            button.addEventListener('click',() => {addToSelected(selectedId)});
+            p.innerHTML = receivedObj.summary;
+            append(element, h3);
+            append(element, img);
+            append(element, button);
+            append(element, p);
         });
 };
 getSeriesFromSession(selectedId);
