@@ -1,5 +1,6 @@
 @import "variables";
 @import "~normalize.css";
+
 body{
   font-family: $font-family;
 }
@@ -11,7 +12,44 @@ body{
   align-items: center;
   height: 100vh;
 }
-
+.header {
+  background: $body-bg;
+  color:$color-white;
+  position: relative;
+  min-height: 120px;
+  top:0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  padding: 0 5%;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.header__nav{
+  position: relative;
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.navigation__buttons_href{
+  color:$color-white;
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  height: content-box;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px 15px;
+  text-transform: uppercase;
+  a{
+    text-decoration: none;
+    color:$color-white;
+  }
+}
 .main {
   background: $body-bg;
   box-shadow: 0px 10px 35px -15px black;
@@ -19,6 +57,7 @@ body{
   margin: 0 auto;
   display: flex;
   flex-direction: row;
+  z-index: 1;
 }
 #header{
 height: 80px;
@@ -84,5 +123,29 @@ ul img{
   width: 60px;
   position: absolute;
   right: 20px;
+}
+footer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  color:$color-white;
+  background-color:$color-red;
+  font-size: 80%;
+  height: 100px;
+}
+.footer__nav{
+  margin:0 auto;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  a{
+    color:$color-white;
+    text-decoration: none;
+    font-size: 100%;
+  }
 }
 
