@@ -150,6 +150,19 @@ body{
   height: 90vh;
   padding-top: 100px;
   padding-left: 50px;
+  span{
+    color:$color-white
+  }
+  select {
+    margin: 10px;
+    width: 50px;
+    padding: 5px 15px 5px 15px;
+    font-size: 16px;
+    border: 1px solid #CCC;
+    height: 34px;
+    appearance: none;
+    outline: none;
+  }
 }
 
 input[type="text"] {
