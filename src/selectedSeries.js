@@ -1,6 +1,7 @@
 import style from "./_scss/main.scss";
 import {append, createNode, getSavedValue} from "./helpers";
-let element = document.getElementById("selectedSeriesPage")
+
+let element = document.getElementById("selectedSeriesPage");
 let selectedArr = JSON.parse(getSavedValue("selectedArr"));
 let createElements = (arr) => {
     arr.map((id) => {
@@ -22,5 +23,5 @@ let createElements = (arr) => {
 
     });
 };
-createElements(selectedArr)
+createElements(selectedArr);
 console.log(selectedArr);

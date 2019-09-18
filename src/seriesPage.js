@@ -5,6 +5,7 @@ import {
     getSavedValue,
     getSavedValueFromSession,
 } from "./helpers";
+
 let selectedId = getSavedValueFromSession('selectedSeries').slice(4);
 let element = document.getElementById("mainSeriesPage");
 let addToSelected = (item) => {

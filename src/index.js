@@ -4,15 +4,12 @@ import {append} from "./helpers";
 import {saveValue} from "./helpers";
 import {getSavedValue} from "./helpers";
 import {saveValueToSession} from "./helpers";
-import {redirect} from "./helpers";
 
-let currentValue ='';
-let currentResponse = {};
 let element = document.getElementById("mainInput");
 element.value = getSavedValue('mainInput');
-const ul = document.getElementById('seriesList');
+let ul = document.getElementById('seriesList');
 let getSeries = (e) => {
-    const targetName=e.value;
+    let targetName=e.value;
     saveValue(e);
     return fetch(`http://api.tvmaze.com/search/shows?q=${targetName}`)
         .then(function(response) {
@@ -30,7 +27,6 @@ let getSeries = (e) => {
                 li.addEventListener("click", () => {saveValueToSession('selectedSeries',li)});
                 img.src = serial.show.image['medium'];
                 span.innerText = `${serial.show.name}`;
-                // span.addEventListener('click', () => {redirect("/seriesPage")});
                 append(a, span);
                 append(li, a);
                 append(li,img);
